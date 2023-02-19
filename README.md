@@ -17,7 +17,7 @@ Desgining the GraphQL API:
 
 Express server:
 ---------------
-* npm install express body-parser
+**npm install express body-parser**
 
 GraphQL:
 --------
@@ -25,16 +25,16 @@ GraphQL:
 * The backend needs to parse these incoming queries sent by frontend and deliver the right data back to the frontend or do whatever the query instructs to do.
 * To parse a query we need 2 parts
   1. Package or Tool that is capable of understanding graphql queries 
-    * For parsing, registering our schema, matching our schema to resolvers which is the code that actually takes care of what need to be done - we can use packages
+     * For parsing, registering our schema, matching our schema to resolvers which is the code that actually takes care of what need to be done - we can use packages
   2. we need to define our capabilities of our API
-    * which kind of queries can we handle
-    * which kind of mutations can we take care of
-    * For writing the schema and defining it, we are the one who would be doing that.
+     * which kind of queries can we handle
+     * which kind of mutations can we take care of
+     * For writing the schema and defining it, we are the one who would be doing that.
 
-npm install express-graphql
+**npm install express-graphql**
 
   * this is a graphql package that can be used as a express middleware that allows us to point at a schema, add resolvers and automatically connect all of that for us and route requests to a parser and then handle them according to our schema and forward them to right resolvers.
 
-npm install graphql
+**npm install graphql**
 
   * This will allow us to define the schema and set up a schema that follows the official graphQL specification and definitions. 
