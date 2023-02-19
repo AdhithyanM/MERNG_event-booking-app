@@ -46,7 +46,9 @@ MongoDB:
 * Have those details configured in a .env file under root folder with names MONGO_USER and MONGO_PASSWORD
 
 **npm install mongoose**
+
 **npm intall dotenv**
+
 **npm install bcryptjs**
 
 * mongoose is a third party npm library that allows us to work with mongdb models through javascript objects.
