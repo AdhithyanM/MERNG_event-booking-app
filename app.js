@@ -13,6 +13,39 @@ const app = express();
 app.use(bodyParser.json());
 
 
+const events = eventIds => {
+  return Event
+    .find({ _id: { $in: eventIds }})
+    .then(events => {
+      return events.map(event => {
+        return {
+          ...event._doc,
+          _id: event.id,
+          creator: user.bind(this, event._doc.creator)
+        };
+      });
+    })
+    .catch(err => {
+      throw err;
+    })
+}
+
+const user = userId => {
+  return User
+    .findById(userId)
+    .then(user => {
+      return { 
+        ... user._doc, 
+        _id: user.id,
+        // Only if the query contains this property, then the events function will be called.
+        createdEvents: events.bind(this, user._doc.createdEvents) 
+      }
+    })
+    .catch(err => {
+      throw err;
+    });
+}
+
 // with graphql, we only have one endpoint to which all req are sent.
 app.use(
   '/graphql', 
@@ -32,12 +65,14 @@ app.use(
           description: String!
           price: Float!
           date: String
+          creator: User
         }
 
         type User {
           _id: ID!
           email: String!
           password: String
+          createdEvents: [Event!]
         }
 
         type RootQuery {
@@ -73,9 +108,14 @@ app.use(
         // when incoming request has the propety events this resolver function is executed.
         return Event
           .find()
+          // .populate('creator')
           .then(events => {
             return events.map(event => {
-              return { ...event._doc, _id: event.id };
+              return { 
+                ...event._doc, 
+                _id: event.id,
+                creator: user.bind(this, event._doc.creator)
+              };
             });
           })
           .catch(err => {
@@ -95,7 +135,11 @@ app.use(
         return event
           .save()
           .then(result => {
-            createEvent = { ...result._doc, _id: result.id };
+            createEvent = { 
+              ...result._doc, 
+              _id: result.id,
+              creator: user.bind(this, result._doc.creator) 
+            };
             return User.findById('63f25d27ee7038fef0dfafd8')
           })
           .then(user => {
