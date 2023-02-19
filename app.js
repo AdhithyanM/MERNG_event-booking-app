@@ -6,6 +6,10 @@ const { buildSchema } = require('graphql');
 const app = express();
 app.use(bodyParser.json());
 
+
+const events = [];
+
+
 // with graphql, we only have one endpoint to which all req are sent.
 app.use(
   '/graphql', 
@@ -19,12 +23,27 @@ app.use(
       // graphql language is typed language. to create a type use type keyword
       // It is recommended to name our queries or mutation in way like accessing property on an object
       `
+        type Event {
+          _id: ID!
+          title: String!
+          description: String!
+          price: Float!
+          date: String
+        }
+
         type RootQuery {
-          events: [String!]!
+          events: [Event!]!
+        }
+
+        input EventInput {
+          title: String!
+          description: String!
+          price: Float!
+          date: String!
         }
 
         type RootMutation {
-          createEvent(name: String!): String
+          createEvent(eventInput: EventInput!): Event
         }
 
         schema {
@@ -37,11 +56,18 @@ app.use(
       // point at an Object which has all the resolver functions
       events: () => {
         // when incoming request has the propety events this resolver function is executed.
-        return ['abc', 'def', 'ghi'];
+        return events;
       },
       createEvent: (args) => {
-        const eventName = args.name;
-        return eventName;
+        const event = {
+          _id: Math.random().toString(),
+          title: args.eventInput.title,
+          description: args.eventInput.description,
+          price: +args.eventInput.price,
+          date: args.eventInput.date
+        };
+        events.push(event);
+        return event;
       }
     }, 
     graphiql: true    // For development puporse we can have a playground to play with graphql
