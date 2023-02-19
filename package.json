@@ -1,0 +1,29 @@
+{
+  "name": "nmrg_event-booking-app",
+  "version": "1.0.0",
+  "description": "Desgining the GraphQL API: -------------------------- * you are required to create to event booking API and also a frontend for it. * Main entities:   * Events   * Users * Users can book events and Events can be booked by users. * Some users can also able to create an Event. * Events therefore has CRUD operations. * Our users are connected to them who creates/updates the events * While getting the events, you might want to filter by    * all events   * all events created by particular user   * all events booked by a particular user * Users can be created and can be logged in essentially. * Users can able to interact with events by booking or cancel a booking.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdhithyanM/NMRG_event-booking-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdhithyanM/NMRG_event-booking-app/issues"
+  },
+  "homepage": "https://github.com/AdhithyanM/NMRG_event-booking-app#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
