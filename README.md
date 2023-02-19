@@ -38,3 +38,17 @@ GraphQL:
 **npm install graphql**
 
   * This will allow us to define the schema and set up a schema that follows the official graphQL specification and definitions. 
+
+MongoDB:
+---------
+* We use mongodb atlas for this project.
+* To setup, create a project and a database cluster in your mongodb cloud account with username and password.
+* Have those details configured in a .env file under root folder with names MONGO_USER and MONGO_PASSWORD
+
+**npm install mongoose**
+**npm intall dotenv**
+**npm install bcryptjs**
+
+* mongoose is a third party npm library that allows us to work with mongdb models through javascript objects.
+* dotenv is used to get environment variables from .env file that we had created on our root folder.
+* bcryptjs is used for encypting user password and other sensitive data.
