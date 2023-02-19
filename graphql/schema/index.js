@@ -7,6 +7,14 @@ module.exports = buildSchema (
   // graphql language is typed language. to create a type use type keyword
   // It is recommended to name our queries or mutation in way like accessing property on an object
   `
+    type Booking {
+      _id: ID!
+      event: Event!
+      user: User!
+      createdAt: String!
+      updatedAt: String!
+    }
+
     type Event {
       _id: ID!
       title: String!
@@ -23,25 +31,29 @@ module.exports = buildSchema (
       createdEvents: [Event!]
     }
 
-    type RootQuery {
-      events: [Event!]!
-    }
-
+    
     input EventInput {
       title: String!
       description: String!
       price: Float!
       date: String!
     }
-
+    
     input UserInput {
       email: String!
       password: String!
+    }
+    
+    type RootQuery {
+      events: [Event!]!
+      bookings: [Booking!]!
     }
 
     type RootMutation {
       createEvent(eventInput: EventInput!): Event
       createUser(userInput: UserInput): User
+      bookEvent(eventId: ID!): Booking!
+      cancelBooking(bookingId: ID!): Event!
     }
 
     schema {
