@@ -43,7 +43,7 @@ MongoDB:
 ---------
 * We use mongodb atlas for this project.
 * To setup, create a project and a database cluster in your mongodb cloud account with username and password.
-* Have those details configured in a .env file under root folder with names MONGO_USER and MONGO_PASSWORD
+* Have those details configured in a .env file under root folder with names MONGO_USER and MONGO_PASSWORD. Also mention the database name with MONGO_DB
 
 **npm install mongoose**
 
