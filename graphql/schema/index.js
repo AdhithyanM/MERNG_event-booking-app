@@ -1,6 +1,6 @@
-const { buildSchema } = require('graphql');
+const { buildSchema } = require("graphql");
 
-module.exports = buildSchema (    
+module.exports = buildSchema(
   // buildSchema fn takes a string and that string should define our schema.
   // to define schema, we use schema keyword and inside the curly braces we have 2 keys
   // query - for fetching data (GET),  mutation - for changing data (POST/PUT/PATCH/DELETE)
@@ -31,6 +31,11 @@ module.exports = buildSchema (
       createdEvents: [Event!]
     }
 
+    type AuthData {
+      userId: ID!
+      token: String!
+      tokenExpiration: Int!
+    }
     
     input EventInput {
       title: String!
@@ -47,6 +52,7 @@ module.exports = buildSchema (
     type RootQuery {
       events: [Event!]!
       bookings: [Booking!]!
+      login(email: String!, password: String!): AuthData!
     }
 
     type RootMutation {
@@ -61,4 +67,4 @@ module.exports = buildSchema (
       mutation: RootMutation
     }
   `
-)
+);
